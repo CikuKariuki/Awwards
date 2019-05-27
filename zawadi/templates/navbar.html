@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     {% if title %}
-    <title>Instagramme {{title}}</title>
+    <title>Awwards {{title}}</title>
     {% else %}
-    <title>Instagramme</title>
+    <title>Awwards</title>
     {% endif %}
 </head>
 
@@ -48,7 +48,7 @@
                             <a href="/accounts/password/change">Change Password</a>
                         </li>
                         <li role="presentation">
-                            <a href="{% url 'new_post'%}">Post</a>
+                            <a href="{% url 'new_post'%}">Post your site</a>
                         </li>
                         <li>
                             <a href="{% url 'profile' username=user %}">{{user.username}}</a>
