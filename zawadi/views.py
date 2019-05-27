@@ -1,4 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from .models import *
+from .forms import NewPostForm
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
 
 def search_results(request):
     if 'users' in request.GET and request.GET['users']:
