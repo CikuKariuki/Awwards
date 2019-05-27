@@ -31,3 +31,24 @@ def new_post(request):
     else:
         form = NewPostForm()
     return render(request,'new_post.html',{"form":form})
+
+@login_required(login_url='/accounts/login/') 
+def profile(request, username):
+    profile = User.objects.get(username=username)
+
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+      
+
+    posts = Posts.get_profile_posts(profile.id) 
+
+    context = {
+        "profile":profile,
+        "profile_details":profile_details,
+        "posts":posts,
+    }
+
+    return render(request,'profile.html',context)
