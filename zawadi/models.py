@@ -9,7 +9,6 @@ class Posts(models.Model):
     images = models.ImageField(upload_to='posts/')
     caption = models.TextField()
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
-    tag = models.ManyToManyField(tag, blank=True)
 
     @classmethod
     def get_profile_posts(cls,profile):

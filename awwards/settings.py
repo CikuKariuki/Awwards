@@ -1,6 +1,6 @@
 import os
-# import django_heroku
-# import dj_database_url
+import django_heroku
+import dj_database_url
 from decouple import config,Csv
 
 MODE=config("MODE", default="dev")
@@ -70,7 +70,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'instagramme.urls'
+ROOT_URLCONF = 'awwards.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'instagramme.wsgi.application'
+WSGI_APPLICATION = 'awwards.wsgi.application'
 
 
 # Database
