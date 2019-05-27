@@ -1,6 +1,6 @@
 import os
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 from decouple import config,Csv
 
 MODE=config("MODE", default="dev")
@@ -49,10 +49,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    'tinymce',
-    'instapics',
+    'zawadi',
     'bootstrap3',
-    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,7 +98,7 @@ WSGI_APPLICATION = 'instagramme.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagramme',
+        'NAME': 'awwards',
         'USER': 'wanjiku',
         'PASSWORD': 'mySql003',
     }
