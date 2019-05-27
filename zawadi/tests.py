@@ -13,3 +13,25 @@ class ProfileTestClass(TestCase):
         profiles = Profile.objects.all()
         self.assertTrue(len(profiles)>0)
  
+
+ class PostsTestClass(TestCase):
+    def setUp(self):
+        self.wanjiku = Profile(first_name = 'Wanjiku',last_name='Kariuki',username='ciku_k',email='sheekokariuki@gmail.com')
+        self.wanjiku.save_profile()
+
+        self.new_tag=tag(tag='testing')
+        self.new_tag.save()
+
+        self.new_post =Posts(caption="testing testing 1,2",profile=self.wanjiku)
+        self.new_post.save()
+
+        self.new_post.tag.add(self.new_tag)
+
+    def tearDown(self):
+        Profile.objects.all().delete()
+        tag.objects.all().delete()
+        Posts.objects.all().delete()    
+
+    def test_posts(self):
+        posts = Posts.posts()
+        self.assertTrue(len(posts)>0)
