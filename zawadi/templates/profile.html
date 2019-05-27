@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+
+<div class="container top">
+   <div class="row">
+       <div class="col-md-12">
+           <div class="row top-section">
+               <div class="col-md-5 profile-image">
+                   <img src="/media/default.png" alt="profile-photo" style="border:1px solid black;border-radius: 100%;"width="100" height="150">
+                
+                </div>
+               <div class="col-md-5 text-center">
+                   <ul class="list-inline">
+                       <li class="list-inline-item">
+                           <span class="username" style="font-family: 'Cookie', cursive; font-size: 50px;">{{ profile.username }}</span>
+                       </li>
+                       {% if profile.username == user.username %}
+                       <li class="list-inline-item">
+
+                       </li>
+                       <li class="list-inline-item">
+                           <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
+                       </li>
+                       {% else %}
+                       <li class="list-inline-item">
+                           <a href="#" class="btn btn-primary">Follow</a>
+                       </li>
+                       {% endif %}
+                   </ul>
+
+                   <ul class="list-inline">
+                       <li class="list-inline-item">
+                           <span class="font-weight-bold">{{posts|length}} </span> Posts
+                       </li>
+                       <li class="list-inline-item">
+                           <span class="font-weight-bold"></span> 0 Followers
+                       </li>
+                       <li class="list-inline-item">
+                           <span class="font-weight-bold"></span> 0 Following
+                       </li>
+                   </ul>
+
+                   <p class="font3">{{profile_details.bio|safe}}</p>
+                   {% if profile.username == user.username %}
+                   <a class="newpost mr-5" id="post" href="{% url 'new_post' %}" ><img src="/media/add.png"></a>
+                   {% endif %}
+               </div>
+           </div>
+       </div>
+   </div>
+   <hr>
+   <h3 style="text-align: center;font-family: 'Cookie', cursive;font-size: 50px;">All Posts</h3>
+   <div class="row user-images">
+       {% for post in posts %}
+       <div class="col-md-4">
+           <div class="card animated zoomInRight">
+               <div class="card-img-top " data-toggle="modal" data-target="#myModal{{post.id}}">
+                   <img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460" height="420" style="padding:12%;">
+               </div>
+
+           </div>
+       </div>
+
+       {% empty %}
+       <div class="col-md-12">
+           <h2> No Uploaded images</h2>
+       </div>
+       {% endfor %}
+       {% for post in posts %}        
+            <div id="myModal{{post.id}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{post.profile}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{post.images.url}}" class="img-responsive" alt="Image"> 
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <p data-dismiss="modal">{{post.caption}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>    
+    
+    {% empty %}
+    
+    <div class="row">
+        <h2 class="text-center">There are no posts</h2>
+    </div>
+</div>
+    {% endfor %}
+
+   </div>
+</div>
+
+<!---modal class-->
+
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+   <div class="modal-content">
+     <div class="modal-body"><ul class="list-group">
+
+           <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+           <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+         </ul>
+     </div>
+   </div>
+ </div>
+</div>
+{% endblock %}
