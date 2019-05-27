@@ -1,0 +1,32 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title>Instagramme {{title}}</title>
+        {% else %}
+        <title>Instagramme</title>
+        {% endif %}
+
+        {% block styles %}   
+            {% bootstrap_css %}
+            <link href="https://fonts.googleapis.com/css?family=Cookie|Great+Vibes&display=swap" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        {% include "navbar.html" %}
+        <p style="padding-top:0px;padding-bottom: 30px;"></p>
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% bootstrap_javascript %}
+        {% endblock %}
+    </body>
+</html>
