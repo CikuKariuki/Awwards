@@ -16,8 +16,8 @@ class Posts(models.Model):
         return posts
 
     @classmethod
-    def search_by_posts(cls,search_term):
-        posts = cls.objects.filter(posts__icontains=search_term)
+    def search_by_caption(cls,search_term):
+        posts = cls.objects.filter(caption__icontains=search_term)
         return posts
 
 

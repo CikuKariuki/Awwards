@@ -8,15 +8,15 @@ from django.contrib.auth.forms import UserCreationForm
 def search_results(request):
     if 'users' in request.GET and request.GET['users']:
         search_term = request.GET.get("users")
-        searched_users = Profile.search_by_users(search_term)
+        searched_posts = Posts.search_by_caption(search_term)
         
         message = f'{search_term}'
         
-        return render(request,'search.html',{"message":message,"users":searched_users})
+        return render(request,'search.html',{"message":message,"users":searched_posts})
     
     else:
         message = "You haven't searched for any term"
-        return render(request,'search.html',{"message":message,"users":searched_users})
+        return render(request,'search.html',{"message":message,"users":searched_posts})
 
 def posts(request):
     posts = Posts.objects.all()
