@@ -6,8 +6,8 @@ Wanjiku Kariuki
 
 ## Description
 This is an application that allows a user to post a project they have created and get it reviewd by other users. The project can be rated based on 3 different criteria:
->Design
->Usability 
+>Design,
+>Usability, 
 >Content
 
 
