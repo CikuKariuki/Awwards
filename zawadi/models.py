@@ -27,8 +27,8 @@ class Profile(models.Model):
     email = models.EmailField()
     profile_picture = models.ImageField(upload_to='profiles/',default='default.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.CharField(max_length=50)
-    bio = models.TextField()
+    website = models.CharField(max_length=50, blank= True)
+    bio = models.TextField(blank=True)
     phone = models.CharField(max_length=15, blank=True)
 
     class Meta:

@@ -1,9 +1,12 @@
 from django.test import TestCase
-from .models import Profile,Posts,tag
+from .models import Profile,Posts
+from django.contrib.auth.models import User
 
 class ProfileTestClass(TestCase):
     def setUp(self):
-        self.wanjiku = Profile(first_name = 'Wanjiku',last_name='Kariuki',username='ciku_k',email='sheekokariuki@gmail.com')
+        self.user = User(username='test',email='test@com',password='hjhj')
+
+        self.wanjiku = Profile(first_name = 'Wanjiku',last_name='Kariuki',email='sheekokariuki@gmail.com',user=self.user)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.wanjiku,Profile))
@@ -11,21 +14,18 @@ class ProfileTestClass(TestCase):
     def test_save(self):
         self.wanjiku.save_profile()
         profiles = Profile.objects.all()
-        self.assertTrue(len(profiles)>0)
+        self.assertTrue(len(profiles)>0) 
+
+    
  
 
- class PostsTestClass(TestCase):
+class PostsTestClass(TestCase):
     def setUp(self):
         self.wanjiku = Profile(first_name = 'Wanjiku',last_name='Kariuki',username='ciku_k',email='sheekokariuki@gmail.com')
         self.wanjiku.save_profile()
 
-        self.new_tag=tag(tag='testing')
-        self.new_tag.save()
-
         self.new_post =Posts(caption="testing testing 1,2",profile=self.wanjiku)
         self.new_post.save()
-
-        self.new_post.tag.add(self.new_tag)
 
     def tearDown(self):
         Profile.objects.all().delete()
