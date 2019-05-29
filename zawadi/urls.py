@@ -11,6 +11,7 @@ urlpatterns=[
     url(r'^profile/(?P<username>\w+)', views.profile, name='profile'),
     url(r'^api/post/$', views.PostList.as_view(),name='posts_api'),
     url(r'^api/profile/$', views.ProfileList.as_view(),name='profiles_api'),
+    url(r'^posts/(\d+)',views.post_details,name='Voteposts'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

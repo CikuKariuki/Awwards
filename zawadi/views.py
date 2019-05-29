@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Posts,Profile
+from .models import Posts,Profile,Rates
+from django.http import Http404
 from .forms import NewPostForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
@@ -30,20 +31,14 @@ def posts(request):
     return render(request,'posts.html',{"posts":posts})
 
 
-@login_required(login_url='/accounts/login/')
-def new_post(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = NewPostForm(request.POST,request.FILES)
-        if form.is_valid():
-            posts = form.save(commit=False)
-            posts.profile = current_user
-            posts.save()
-        return redirect('posts')
-    else:
-        form = NewPostForm()
+def post_details(request,post_id):
+ 
+    posts = Posts.objects.get(id=post_id)
+    print(posts)
+    all = Rates.objects.filter(project=post_id)
 
-        count = 0
+
+    count = 0
     for i in all:
         count+=i.usability
         count+=i.design
@@ -59,15 +54,15 @@ def new_post(request):
         if form.is_valid():
             rate = form.save(commit=False)
             rate.user = request.user
-            rate.project = project_id
+            rate.project = post_id
             rate.save()
-        return redirect('projects',project_id)
+        return redirect('post_details',post_id)
         
     else:
         form = VotesForm() 
         
     # The votes logic
-    votes = Rates.objects.filter(project=project_id)
+    votes = Rates.objects.filter(project=post_id)
     usability = []
     design = []
     content = [] 
@@ -99,23 +94,12 @@ def new_post(request):
         arr1.append(use.user_id) 
                 
     auth = arr1
-       
-    reviews = ReviewForm(request.POST)
-    if request.method == 'POST':
-        
-        if reviews.is_valid():
-            comment = reviews.save(commit=False)
-            comment.user = request.user
-            comment.save()
-            return redirect ('projects',project_id)
-        else:
-            reviews = ReviewForm()
             
         
-    user_comments = Comments.objects.filter(pro_id=project_id)
+
        
     context = {
-        'projects':projects,
+        'posts':posts,
         'form':form,
         'usability':average_usability,
         'design':average_design,
@@ -123,12 +107,31 @@ def new_post(request):
         'average_rating':average_rating,
         'auth':auth,
         'all':all,
-        'average':average,
-        'comments':user_comments,
-        'reviews':reviews,
-        
+        'average':average,   
     }
-    return render(request,'new_post.html',context)
+
+    return render(request,'single_post.html',context)
+
+    
+
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST,request.FILES)
+        if form.is_valid():
+            posts = form.save(commit=False)
+            posts.profile = current_user
+            posts.save()
+        return redirect('posts')
+    else:
+        form = NewPostForm()
+
+    
+
+    
+    return render(request,'new_post.html')
 
 @login_required(login_url='/accounts/login/') 
 def profile(request, username):
