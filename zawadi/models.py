@@ -1,9 +1,9 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth.decorators import login_required
+from django.core.validators import MaxValueValidator
 
 class Posts(models.Model):
     images = models.ImageField(upload_to='posts/')
@@ -60,3 +60,15 @@ class Profile(models.Model):
         profile = Profile.objects.filter(user = id).first()
         return profile
 
+class Rates(models.Model):
+    design = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)])
+    usability = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)])
+    content = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)]) 
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.IntegerField(default=0) 
+    
+    
+class Comments(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    comments = models.TextField(max_length=400)
+    pro_id = models.IntegerField(default=0) 

@@ -11,19 +11,17 @@
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <span class="username"
-                                style="font-family: 'Cookie', cursive; font-size: 50px;">{{ profile.username }}</span>
+                                style="font-family: 'Cookie', cursive; font-size: 50px;margin-left: 500px;">{{ profile.username }}</span>
                         </li>
                         {% if profile.username == user.username %}
                         <li class="list-inline-item">
-
+                                <a href="{% url 'posts_api' %}">POSTS API</a><br>
+                                <a href="{% url 'profiles_api' %}">PROFILE API</a>
                         </li>
                         <li class="list-inline-item">
                             <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
                         </li>
-                        {% else %}
-                        <li class="list-inline-item">
-                            <a href="#" class="btn btn-primary">Follow</a>
-                        </li>
+
                         {% endif %}
                     </ul>
 

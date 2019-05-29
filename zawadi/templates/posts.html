@@ -17,12 +17,15 @@
     <div class="row">
         {% for post in posts %}
         <div class="col-md-4 ">
+            
             <a data-lightbox="photos" href="{{post.images.url}}">
                 <a href="{{post.link}}" target="_blank"><img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460"
                         height="420" style="padding:12%;"></a>
             </a>
+            
             <p style="text-align:center;">By {{post.creator}}</p>
-        </div>
+        
+    </div>
         {% endfor %}
     </div>
 
