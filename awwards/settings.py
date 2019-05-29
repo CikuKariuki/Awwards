@@ -51,6 +51,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 INSTALLED_APPS = [
     'zawadi',
     'bootstrap3',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

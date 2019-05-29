@@ -57,3 +57,4 @@ class Profile(models.Model):
     def filter_by_id(cls, id):
         profile = Profile.objects.filter(user = id).first()
         return profile
+
