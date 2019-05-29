@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from .serializer import PostSerializer,ProfileSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
+from django.contrib.auth.models import User
 
 def search_results(request):
     if 'users' in request.GET and request.GET['users']:

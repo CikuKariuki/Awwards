@@ -1,8 +1,10 @@
-
-<div class="row" style="background-image:url('https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=740');background-position: static;margin-top:-70px;">
+<div class="row"
+    style="background-image:url('https://images.pexels.com/photos/1563332/pexels-photo-1563332.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1300');background-position: static;margin-top:-70px; background-attachment: fixed;">
     <div class="welcome" style="height: 750px;margin:0 auto;"></div>
     <div class="text-center">
-        <h1 style="color:aliceblue;top:50%;left:50%;position: absolute;transform: translate(-50%,-50%);font-family: 'Yeseva One', cursive;font-weight: 600;font-size: 70px;">AWWARDS</h1>
+        <h1
+            style="color:aliceblue;top:50%;left:50%;position: absolute;transform: translate(-50%,-50%);font-family: 'Yeseva One', cursive;font-weight: 600;font-size: 70px;">
+            AWWARDS</h1>
     </div>
 </div>
 
@@ -11,41 +13,37 @@
 {% block content %}
 {{block.super}}
 <div class="container">
-    
-        <div class="row">
-                {% for post in posts %}
-            <div class="col-md-4 ">
-                <a data-lightbox="photos" href="{{post.images.url}}">
-                    <a href="{{post.link}}"><img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460" height="420" style="padding:12%;"></a>
-                </a>
-            </div>
-            {% endfor %}
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 ">
+            <a data-lightbox="photos" href="{{post.images.url}}">
+                <a href="{{post.link}}" target="_blank"><img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460"
+                        height="420" style="padding:12%;"></a>
+            </a>
+            <p style="text-align:center;">By {{post.creator}}</p>
         </div>
-      
-   
+        {% endfor %}
     </div>
-<section class="testimonials">
-    <h2 class="text-center">People Love it!</h2>
-    <blockquote>
-        <p>It is enjoyed by many</p>
-        <footer>Famous websites</footer>
-    </blockquote>
-</section>
-<section class="features" style="background-color:tomato;">
+
+
+</div>
+
+<section class="features" style="background-color:grey;">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h2>Fantastic features</h2>
-                <p>View, Comment, Upload your site</p>
+                <p>Upload your site and get inspiration from others</p>
             </div>
             <div class="col-md-6">
                 <div class="row icon-features">
                     <div class="col-xs-4 icon-feature">
-                        <i class="glyphicon glyphicon-cloud" style="margin-top:15px;"></i>
+                        <i class="glyphicon glyphicon-cloud" style="margin-top:20px;font-size: 50px;"></i>
                         <p>Cloud Ready</p>
                     </div>
                     <div class="col-xs-4 icon-feature">
-                        <i class="glyphicon glyphicon-fire"></i>
+                        <i class="glyphicon glyphicon-fire" style="margin-top:20px; font-size: 50px;"></i>
                         <p>Fire Product</p>
                     </div>
                 </div>
@@ -53,15 +51,6 @@
         </div>
     </div>
 </section>
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h5>Awwards app copyright 2019</h5>
-            </div>
-        </div>
-    </div>
-</footer>
+
 
 {% endblock %}
-
