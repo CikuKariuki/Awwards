@@ -36,6 +36,8 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{% url 'posts_api' %}">POSTS API</a>
+                    <a href="{% url 'profiles_api' %}">Profile Api</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div id="navcol-1" class="collapse navbar-collapse">

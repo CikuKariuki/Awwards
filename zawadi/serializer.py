@@ -4,9 +4,10 @@ from .models import Posts, Profile
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ('images','caption','profile')
+        fields = ('id','images','caption','profile')
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('first_name','last_name','email','profile','user','website','bio','phone')
+        fields = ('id','first_name','last_name','email','profile','user','website','bio','phone')
+

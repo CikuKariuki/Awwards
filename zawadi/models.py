@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 class Posts(models.Model):
     images = models.ImageField(upload_to='posts/')
     caption = models.TextField()
+    link = models.CharField(max_length = 200)
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
 
     @classmethod

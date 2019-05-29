@@ -16,7 +16,7 @@
                 {% for post in posts %}
             <div class="col-md-4 ">
                 <a data-lightbox="photos" href="{{post.images.url}}">
-                    <img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460" height="420" style="padding:12%;">
+                    <a href="{{post.link}}"><img src="{{post.images.url}}" alt="" class="rgba-red-slight i" width="460" height="420" style="padding:12%;"></a>
                 </a>
             </div>
             {% endfor %}
