@@ -16,15 +16,15 @@ from .forms import VotesForm,ReviewForm
 def search_results(request):
     if 'users' in request.GET and request.GET['users']:
         search_term = request.GET.get("users")
-        searched_posts = Posts.search_by_caption(search_term)
+        searched_users = Profile.search_by_users(search_term)
         
         message = f'{search_term}'
         
-        return render(request,'search.html',{"message":message,"users":searched_posts})
+        return render(request,'search.html',{"message":message,"users":searched_users})
     
     else:
         message = "You haven't searched for any term"
-        return render(request,'search.html',{"message":message,"users":searched_posts})
+        return render(request,'search.html',{"message":message,"users":searched_users})
 
 def posts(request):
     posts = Posts.objects.all()

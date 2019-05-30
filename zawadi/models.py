@@ -17,11 +17,6 @@ class Posts(models.Model):
         posts = Posts.objects.filter(profile__pk=profile)
         return posts
 
-    @classmethod
-    def search_by_caption(cls,search_term):
-        posts = cls.objects.filter(caption__icontains=search_term)
-        return posts
-
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=100)
@@ -39,6 +34,7 @@ class Profile(models.Model):
 
     def save_profile(self):
         self.save()
+
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -59,6 +55,11 @@ class Profile(models.Model):
     def filter_by_id(cls, id):
         profile = Profile.objects.filter(user = id).first()
         return profile
+
+    @classmethod
+    def search_by_users(cls,search_term):
+        users = cls.objects.filter(user__username__icontains=search_term)
+        return users
 
 class Rates(models.Model):
     design = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10)])
